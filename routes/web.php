@@ -61,7 +61,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/store', [PostController::class, 'store'])->name('post.store');
         Route::get('/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
         Route::post('/edit/{id}', [PostController::class, 'update'])->name('post.update');
-        Route::post('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+        Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
     });
     Route::group(['prefix' => 'analysisquestion'], function () {
         Route::get('/manage', [AnalysisQuestionController::class, 'index'])->name('analysisQuestion.manage');

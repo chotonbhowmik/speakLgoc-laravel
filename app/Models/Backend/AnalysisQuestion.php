@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AnalysisQuestion extends Model
 {
     use HasFactory;
-    public function heading()
+    public function post()
     {
-        return $this->belongsTo(Post::class, 'id'); // Make sure to specify the correct foreign key column
+        return $this->belongsTo(Post::class, 'question', 'id'); // Make sure to specify the correct foreign key column
     }
 }

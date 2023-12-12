@@ -17,10 +17,11 @@
           </a><!-- br-menu-link -->
           <ul class="br-menu-sub">
             <li class="sub-item"><a href="{{route('post.create')}}" class="sub-link @if ( Route::currentRouteNamed('post.create')) active @endif">Add Article</a></li>
-            <li class="sub-item @if ( Route::currentRouteNamed('analysisQuestion.create')) active @endif"><a href="{{route('analysisQuestion.create')}}" class="sub-link">Analysis Question</a></li>
-            <li class="sub-item @if ( Route::currentRouteNamed('analysisAnswer.create')) active @endif"><a href="{{route('analysisAnswer.create')}}" class="sub-link">Analysis Answer</a></li>
+ <li class="sub-item"><a href="{{route('analysisQuestion.create')}}" class="sub-link @if ( Route::currentRouteNamed('analysisQuestion.create')) active @endif">Analysis Question</a></li>
+ <li class="sub-item"><a href="{{route('analysisAnswer.create')}}" class="sub-link @if ( Route::currentRouteNamed('analysisQuestion.create')) active @endif">Analysis Answer</a></li>
 
           </ul>
+
         </li>
          <li class="br-menu-item">
           <a href="{{route('dashboard')}}" class="br-menu-link" >
