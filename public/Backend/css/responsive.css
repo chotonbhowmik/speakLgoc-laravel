@@ -1,0 +1,293 @@
+@media only screen and (min-width: 2400px) {
+    .dashboardInner .container-fluid{
+        max-width: 1920px;
+    }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1800px) {
+    .articleCard .col-xl-4{
+        width: 100%;
+    }
+    .articleCard .col-xl-8{
+        width: 100%;
+    }
+    .articleCard img {
+        height: 11.25em;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1399px) {
+    .sideNavbar__logo img {
+        width: 11.25em;
+    }
+
+    .sideNavbar {
+        width: 16.875em;
+    }
+
+    .sideNavbar>ul>li>a>svg {
+        width: 2.25em;
+        height: 2.25em;
+    }
+
+    .sideNavbar>ul>li>a {
+        font-size: 0.875em;
+    }
+
+    .main-wrapper,
+    header {
+        padding-left: 16.875em;
+    }
+
+    .dashboardInner {
+        padding: 1.25em;
+    }
+
+    .articleHeader h2 {
+        font-size: 2.5em;
+    }
+    .card-btn {
+        padding: 0.5em 1.2em;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+
+    /**/
+    .myTabs .nav-link {
+        padding: 0.9375em 0;
+    }
+
+    .articleHeader h2 {
+        font-size: 2em;
+    }
+    .articleHeader h4{
+        font-size: 1.2em;
+    }
+
+    .articleCard img {
+        height: 11.25em;
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 991px) {
+    .sideNavbar {
+        left: -20.875em;
+    }
+
+    .main-wrapper,
+    header {
+        padding-left: 0;
+    }
+
+    .sideNavbar.close {
+        left: 0;
+    }
+
+    .main-wrapper.h-100.p-0 {
+        transform: translateX(16.875em);
+        -webkit-transform: translateX(16.875em);
+        -moz-transform: translateX(16.875em);
+        -ms-transform: translateX(16.875em);
+        -o-transform: translateX(16.875em);
+    }
+
+    .dashboardInner {
+        margin-top: 0;
+        padding-top: 7.5em;
+    }
+
+    body,
+    html {
+        overflow-x: hidden;
+    }
+
+    /**/
+
+    .modal-title h3 {
+        font-size: 1.125em;
+        line-height: 1.125em;
+    }
+    .editedData__content{
+        margin-top: 1em;
+    }
+    .myTabs .nav-item {
+        width: 33.3%;
+        text-align: center;
+    }
+    .myTabs .nav-link {
+        width: 100%;
+        background: var(--bg-color);
+        border: 0;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+        margin-bottom: 0.5em;
+        font-size: 0.75em;
+}
+    .myTabs .nav-link.active{
+        background: var(--primary-color);
+        color: var(--white-color);
+    }
+
+    .myDataTable table{
+        width: 1024px !important;
+    }
+
+
+    .wizard-newdropdowns .btn {
+        line-height: 16px;
+        font-size: 14px;
+    }
+
+    .articleShare{
+        padding-top: 10px
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .headerSearch input {
+        padding: 0.5em 1em 0.5em 3em !important;
+    }
+
+    .mycard h5{
+        font-size: 1em;
+    }
+    .pageHeading h2{
+        font-size: 1.125em;
+    }
+    .cta-btn-lg {
+        padding: 0.5em 1.5em;
+    }
+
+    .articleHeader h2 {
+        font-size: 1.8em;
+    }
+
+    .addArticleWizard nav button{
+        padding: 20px 20px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .form-field select, .form-field input[type="text"], .form-field input[type="password"], .form-field input[type="search"], .form-field input[type="email"] {
+        padding: 0.75em 1em;
+        font-size: 0.875em;
+    }
+    .form-field .btn,
+    .form-field input[type="submit"] {
+        padding: 0.75em 1em;
+        font-size: 0.875em;
+    }
+
+    .headerMenus button {
+        margin-right: 0em;
+    }
+
+    .headerMenus .dropdown{
+        padding: 2px !important
+    }
+
+    .headerSearch {
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        display: none;
+        background: var(--white-color);
+        padding: 0 0.9375em 0.9375em;
+        top: 5.3125em;
+    }
+
+    .headerSearch.show {
+        display: block;
+    }
+
+    .dashboardInner {
+        padding: 6.5625em 0.625em
+    }
+
+    .dashboardCard .card-body {
+        padding: 1.25em 0.625em 0 !important
+    }
+
+    .dashboardCard .card-footer {
+        padding: 0 0.625em 1.25em !important
+    }
+
+    .dashboardCard h3 {
+        font-size: 1.875em;
+    }
+
+    .dashboardCard a {
+        font-size: 0.75em;
+        line-height: 0.75em;
+        display: block;
+    }
+
+    .readerFeed li,
+    .articleSocial li{
+        margin-right: 15px;
+    }
+
+    /**/
+
+    .modal-header,
+    .modal-body{
+        padding: 1em !important;
+    }
+
+    .myTabs .nav-link {
+        font-size: 0.8em;
+        line-height: 0.8125em;
+        min-height: 3.4375em;
+    }
+
+    .addCard .card-body{
+        display: block !important;
+    }
+
+    .articleHeader h2 {
+        font-size: 1.3em;
+    }
+    .articleHeader h4 {
+        font-size: 1em;
+        margin-top: 1em;
+    }
+    .articleContent p {
+        line-height: 1.5em;
+    }
+    .articleAna span {
+        font-size: 1em;
+    }
+    
+
+    .addArticleWizard nav button {
+        padding: 20px 10px;
+        width: 50%;
+        margin: 0;
+        font-size: 13px;
+        line-height: 14px;
+    }
+
+}
+
+
+@media only screen and (max-width: 479px) {
+    .articleShare{
+        display: block !important;
+    }
+    .readerFeed li, .articleSocial li{
+        margin-bottom: 0;
+    }
+    .readerFeed{
+        margin-bottom: 20px;
+    }
+}

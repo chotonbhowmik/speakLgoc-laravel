@@ -14,7 +14,7 @@ class AnalysisAnswerController extends Controller
      */
     public function index()
     {
-       $analysisDatas = AnalysisAnswer::orderBy('id', 'desc')->get();
+        $analysisDatas = AnalysisAnswer::orderBy('id', 'desc')->get();
         return view('backend.pages.analysisAnswer.manage', compact('analysisDatas'));
     }
 

@@ -1,29 +1,17 @@
-<!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speak Logic</title>
+    <link rel="stylesheet" href="{{ asset('Backend/css/bootstrap.min.css') }}" />
 
-    <!-- Twitter -->
-    <meta name="twitter:site" content="@themepixels">
-    <meta name="twitter:creator" content="@themepixels">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bracket Plus">
-    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
-    <meta name="twitter:image" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
+    <link rel="stylesheet" href="{{ asset('Backend/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('Backend/css/text-editor.css') }}" />
+    <link rel="stylesheet" href="{{ asset('Backend/css/dashboard.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('Backend/css/responsive.css') }}" />
+</head>
 
-    <!-- Facebook -->
-    <meta property="og:url" content="http://themepixels.me/bracketplus">
-    <meta property="og:title" content="Bracket Plus">
-    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
-
-    <meta property="og:image" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
-    <meta property="og:image:secure_url" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="600">
-
-    <!-- Meta -->
-    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
-    <meta name="author" content="ThemePixels">
-
-    <title>Analysis App</title>
+<body>

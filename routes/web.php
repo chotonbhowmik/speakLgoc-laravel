@@ -63,32 +63,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/edit/{id}', [PostController::class, 'update'])->name('post.update');
         Route::delete('/delete/{id}', [PostController::class, 'destroy'])->name('post.destroy');
     });
-    Route::group(['prefix' => 'analysisquestion'], function () {
-        Route::get('/manage', [AnalysisQuestionController::class, 'index'])->name('analysisQuestion.manage');
 
-        Route::get('/create', [AnalysisQuestionController::class, 'create'])->name('analysisQuestion.create');
-        Route::post('/store', [AnalysisQuestionController::class, 'store'])->name('analysisQuestion.store');
-        Route::get('/edit/{id}', [AnalysisQuestionController::class, 'edit'])->name('analysisQuestion.edit');
-        Route::post('/edit/{id}', [AnalysisQuestionController::class, 'update'])->name('analysisQuestion.update');
-        Route::post('/delete/{id}', [AnalysisQuestionController::class, 'destroy'])->name('analysisQuestion.destroy');
-    });
 
-    Route::group(['prefix' => 'analysisAnswer'], function () {
-        Route::get('/manage', [AnalysisAnswerController::class, 'index'])->name('analysisAnswer.manage');
 
-        Route::get('/create', [AnalysisAnswerController::class, 'create'])->name('analysisAnswer.create');
-        Route::post('/store', [AnalysisAnswerController::class, 'store'])->name('analysisAnswer.store');
-        Route::get('/edit/{id}', [AnalysisAnswerController::class, 'edit'])->name('analysisAnswer.edit');
-        Route::post('/edit/{id}', [AnalysisAnswerController::class, 'update'])->name('analysisAnswer.update');
-        Route::post('/delete/{id}', [AnalysisAnswerController::class, 'destroy'])->name('analysisAnswer.destroy');
-    });
-    Route::group(['prefix' => 'analysissetting'], function () {
-        Route::get('/manage', [AnalysisSettingController::class, 'index'])->name('analysissetting.manage');
-
-        Route::get('/create', [AnalysisSettingController::class, 'create'])->name('analysissetting.create');
-        Route::post('/store', [AnalysisSettingController::class, 'store'])->name('analysissetting.store');
-        Route::get('/edit/{id}', [AnalysisSettingController::class, 'edit'])->name('analysissetting.edit');
-        Route::post('/edit/{id}', [AnalysisSettingController::class, 'update'])->name('analysissetting.update');
-        Route::post('/delete/{id}', [AnalysisSettingController::class, 'destroy'])->name('analysissetting.destroy');
-    });
 });

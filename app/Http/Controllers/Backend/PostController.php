@@ -32,10 +32,9 @@ class PostController extends Controller
 
     {
 
-        $posts = Post::all(); // or however you retrieve your posts
-        $questions = AnalysisQuestion::all(); // retrieve analysis questions
-        $answers = AnalysisAnswer::all();
-        return view('backend.pages.post.create', compact('posts', 'questions', 'answers'));
+
+        $posts = Post::orderBy('id', 'desc')->get();
+        return view('backend.pages.post.create', compact('posts'));
     }
 
     /**
@@ -45,10 +44,39 @@ class PostController extends Controller
     {
 
         $post = new Post();
-        $post->heading = $request->heading;
-        $post->slug = str::slug($request->heading);
-        $post->paragraph = $request->paragraph;
-        $post->description = $request->description;
+
+        // Set the properties of the post model from the form inputs
+        $post->article_title = $request->input('article_title');
+        $post->provider_name = $request->input('provider_name');
+        $post->person_name = $request->input('person_name');
+        $post->person_location = $request->input('person_location');
+        $post->use_given_set = $request->input('flexRadioDefault') == 'yes'; // Assuming 'yes' is the value for Yes option
+        $post->people_location = $request->input('people_location');
+        $post->consideration = $request->input('consideration');
+        $post->event_name = $request->input('event_name');
+        $post->event_location = $request->input('event_location');
+        $post->event_date = $request->input('event_date');
+        $post->event_time = $request->input('event_time');
+        $post->information_before_event = $request->input('information_before_event');
+        $post->mother_nature = $request->input('mother_nature');
+        $post->function_executed = $request->input('negative_function');
+        $post->problem_developed = $request->input('problem_developed');
+        $post->Relationship_if_any_between = $request->input('Relationship_if_any_between');
+        $post->aricale_description = $request->input('aricale_description');
+$post->Pre_event_observation = $request->input('Pre_event_observation');
+$post->Post_event_observation = $request->input('Post_event_observation');
+
+
+        $post->product_type = $request->product_type;
+        $post->product_function = $request->product_function;
+        $post->problem_solved = $request->problem_solved;
+        $post->function_executed_review = $request->function_executed_review;
+        $post->is_problem_solved = $request->is_problem_solved;
+        $post->additional_information = $request->additional_information;
+        $post->product_url = $request->product_url;
+        $post->provider_contact = $request->provider_contact;
+        $post->reviewer_contact = $request->reviewer_contact;
+        $post->Function_executed_from_event = $request->input('Function_executed_from_event');
         if ($request->image) {
             $image = $request->file('image');
             $img = rand() . '.' . $image->getClientOriginalExtension();
@@ -57,10 +85,9 @@ class PostController extends Controller
             $image->move(public_path('Backend/img/post'), $img);
             $post->image = $img;
         }
-
-
-
+        // Save the post to the database
         $post->save();
+
         return redirect()->route('post.create');
 
 

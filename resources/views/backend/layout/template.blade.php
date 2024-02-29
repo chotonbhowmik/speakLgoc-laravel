@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     @include('backend.includes.header')
-    @include('backend.includes.css')
+    {{-- @include('backend.includes.css') --}}
   </head>
 
   <body>
@@ -11,13 +11,11 @@
 
 @include('backend.includes.topbar')
 
-@include('backend.includes.rightPanel')
-  <!-- ########## START: MAIN PANEL ########## -->
-    <div class="br-mainpanel">
+
+    <div class="dashboardInner">
     @yield('body')
-    @include('backend.includes.footer')
-    </div><!-- br-mainpanel -->
-    <!-- ########## END: MAIN PANEL ########## -->
+
+    </div>
 
 @include('backend.includes.script')
   </body>

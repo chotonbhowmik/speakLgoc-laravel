@@ -1,72 +1,178 @@
- <!-- ########## START: LEFT PANEL ########## -->
-    <div class="br-logo"><a href=""><span>[</span>Analysis<i>App</i><span>]</span></a></div>
-    <div class="br-sideleft sideleft-scrollbar">
-      <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
-      <ul class="br-sideleft-menu">
-        <li class="br-menu-item">
-          <a href="{{route('dashboard')}}" class="br-menu-link" >
-            <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
-            <span class="menu-item-label">Dashboard</span>
-          </a>
-        </li>
+  <div class="sideNavbar">
+        <div class="sideNavbar__logo">
+            <a href="#"><img src="assets/img/logo.svg" alt width="210" /></a>
+        </div>
+        <ul class="list-unstyled p-0 m-0">
+            <li>
+                <a href="{{ route('dashboard') }}">
 
-        <li class="br-menu-item">
-          <a href="" class="br-menu-link with-sub @if ( Route::currentRouteNamed('post.create') || Route::currentRouteNamed('analysisQuestion.create') || Route::currentRouteNamed('analysisAnswer.create')  active @endif">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Post Article</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            <li class="sub-item"><a href="{{route('post.create')}}" class="sub-link @if ( Route::currentRouteNamed('post.create')) active @endif">Add Article</a></li>
- <li class="sub-item"><a href="{{route('analysisQuestion.create')}}" class="sub-link @if ( Route::currentRouteNamed('analysisQuestion.create')) active @endif">Analysis Question</a></li>
- <li class="sub-item"><a href="{{route('analysisAnswer.create')}}" class="sub-link @if ( Route::currentRouteNamed('analysisQuestion.create')) active @endif">Analysis Answer</a></li>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.40001 19.2002H15.6C16.26 19.2002 16.8 18.6602 16.8 18.0002V8.4002C16.8 7.7402 16.26 7.2002 15.6 7.2002H8.40001C7.74001 7.2002 7.20001 7.7402 7.20001 8.4002V18.0002C7.20001 18.6602 7.74001 19.2002 8.40001 19.2002ZM8.40001 28.8002H15.6C16.26 28.8002 16.8 28.2602 16.8 27.6002V22.8002C16.8 22.1402 16.26 21.6002 15.6 21.6002H8.40001C7.74001 21.6002 7.20001 22.1402 7.20001 22.8002V27.6002C7.20001 28.2602 7.74001 28.8002 8.40001 28.8002ZM20.4 28.8002H27.6C28.26 28.8002 28.8 28.2602 28.8 27.6002V18.0002C28.8 17.3402 28.26 16.8002 27.6 16.8002H20.4C19.74 16.8002 19.2 17.3402 19.2 18.0002V27.6002C19.2 28.2602 19.74 28.8002 20.4 28.8002ZM19.2 8.4002V13.2002C19.2 13.8602 19.74 14.4002 20.4 14.4002H27.6C28.26 14.4002 28.8 13.8602 28.8 13.2002V8.4002C28.8 7.7402 28.26 7.2002 27.6 7.2002H20.4C19.74 7.2002 19.2 7.7402 19.2 8.4002Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
 
-          </ul>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('post.create') }}">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M26.4 7.2002H9.60001C8.28001 7.2002 7.20001 8.2802 7.20001 9.6002V26.4002C7.20001 27.7202 8.28001 28.8002 9.60001 28.8002H26.4C27.72 28.8002 28.8 27.7202 28.8 26.4002V9.6002C28.8 8.2802 27.72 7.2002 26.4 7.2002ZM13.2 24.0002C12.54 24.0002 12 23.4602 12 22.8002V16.8002C12 16.1402 12.54 15.6002 13.2 15.6002C13.86 15.6002 14.4 16.1402 14.4 16.8002V22.8002C14.4 23.4602 13.86 24.0002 13.2 24.0002ZM18 24.0002C17.34 24.0002 16.8 23.4602 16.8 22.8002V13.2002C16.8 12.5402 17.34 12.0002 18 12.0002C18.66 12.0002 19.2 12.5402 19.2 13.2002V22.8002C19.2 23.4602 18.66 24.0002 18 24.0002ZM22.8 24.0002C22.14 24.0002 21.6 23.4602 21.6 22.8002V20.4002C21.6 19.7402 22.14 19.2002 22.8 19.2002C23.46 19.2002 24 19.7402 24 20.4002V22.8002C24 23.4602 23.46 24.0002 22.8 24.0002Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
 
-        </li>
-         <li class="br-menu-item">
-          <a href="{{route('dashboard')}}" class="br-menu-link" >
-            <i class="fas fa-check-square"></i>
-            <span class="menu-item-label">Approve Analysis</span>
-          </a>
-        </li>
-        <li class="br-menu-item">
-          <a href="{{route('dashboard')}}" class="br-menu-link" >
-            <i class="fas fa-trash-alt"></i>
-            <span class="menu-item-label">Delete</span>
-          </a>
-        </li>
-        <li class="br-menu-item">
-          <a href="{{route('dashboard')}}" class="br-menu-link" >
-            <i class="far fa-eye-slash"></i>
-            <span class="menu-item-label">Hide</span>
-          </a>
-        </li>
-        <li class="br-menu-item">
-          <a href="{{route('dashboard')}}" class="br-menu-link" >
-            <i class="far fa-comment-dots"></i>
-            <span class="menu-item-label">Provide Feedback</span>
-          </a>
-        </li>
-        <li class="br-menu-item">
-          <a href="{{route('analysissetting.create')}}" class="br-menu-link" >
-            <i class="fas fa-cog"></i>
-            <span class="menu-item-label">Analysis Setting</span>
-          </a>
-        </li>
-        <li class="br-menu-item">
-          <a href="{{route('dashboard')}}" class="br-menu-link" >
-            <i class="fas fa-chart-pie"></i>
-            <span class="menu-item-label">Report</span>
-          </a>
-        </li>
+                    Post Article
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M26.4 8.4H21.384C20.88 7.008 19.56 6 18 6C16.44 6 15.12 7.008 14.616 8.4H9.60001C8.28001 8.4 7.20001 9.48 7.20001 10.8V27.6C7.20001 28.92 8.28001 30 9.60001 30H26.4C27.72 30 28.8 28.92 28.8 27.6V10.8C28.8 9.48 27.72 8.4 26.4 8.4ZM18 8.4C18.66 8.4 19.2 8.94 19.2 9.6C19.2 10.26 18.66 10.8 18 10.8C17.34 10.8 16.8 10.26 16.8 9.6C16.8 8.94 17.34 8.4 18 8.4ZM19.2 25.2H13.2C12.54 25.2 12 24.66 12 24C12 23.34 12.54 22.8 13.2 22.8H19.2C19.86 22.8 20.4 23.34 20.4 24C20.4 24.66 19.86 25.2 19.2 25.2ZM22.8 20.4H13.2C12.54 20.4 12 19.86 12 19.2C12 18.54 12.54 18 13.2 18H22.8C23.46 18 24 18.54 24 19.2C24 19.86 23.46 20.4 22.8 20.4ZM22.8 15.6H13.2C12.54 15.6 12 15.06 12 14.4C12 13.74 12.54 13.2 13.2 13.2H22.8C23.46 13.2 24 13.74 24 14.4C24 15.06 23.46 15.6 22.8 15.6Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
 
 
+                    List of Articles
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M26.4 8.4H21.384C20.88 7.008 19.56 6 18 6C16.44 6 15.12 7.008 14.616 8.4H9.60001C8.28001 8.4 7.20001 9.48 7.20001 10.8V27.6C7.20001 28.92 8.28001 30 9.60001 30H26.4C27.72 30 28.8 28.92 28.8 27.6V10.8C28.8 9.48 27.72 8.4 26.4 8.4ZM18 8.4C18.66 8.4 19.2 8.94 19.2 9.6C19.2 10.26 18.66 10.8 18 10.8C17.34 10.8 16.8 10.26 16.8 9.6C16.8 8.94 17.34 8.4 18 8.4ZM14.748 24.348L11.64 21.24C11.4153 21.0158 11.289 20.7114 11.289 20.394C11.289 20.0766 11.4153 19.7722 11.64 19.548C12.108 19.08 12.864 19.08 13.332 19.548L15.6 21.804L22.656 14.748C23.124 14.28 23.88 14.28 24.348 14.748C24.816 15.216 24.816 15.972 24.348 16.44L16.44 24.348C15.984 24.816 15.216 24.816 14.748 24.348Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
 
-      </ul><!-- br-sideleft-menu -->
+                    Approved Analysis
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M9 22C9 23.1 9.9 24 11 24H19C20.1 24 21 23.1 21 22V12C21 10.9 20.1 10 19 10H11C9.9 10 9 10.9 9 12V22ZM21 7H18.5L17.79 6.29C17.61 6.11 17.35 6 17.09 6H12.91C12.65 6 12.39 6.11 12.21 6.29L11.5 7H9C8.45 7 8 7.45 8 8C8 8.55 8.45 9 9 9H21C21.55 9 22 8.55 22 8C22 7.45 21.55 7 21 7Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
 
-      <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Information Summary</label>
+
+                    Deleted Analysis
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M26.4 8.4H21.384C20.88 7.008 19.56 6 18 6C16.44 6 15.12 7.008 14.616 8.4H9.60001C8.28001 8.4 7.20001 9.48 7.20001 10.8V27.6C7.20001 28.92 8.28001 30 9.60001 30H26.4C27.72 30 28.8 28.92 28.8 27.6V10.8C28.8 9.48 27.72 8.4 26.4 8.4ZM19.2 26.4H16.8V24H19.2V26.4ZM19.2 20.4C19.2 21.06 18.66 21.6 18 21.6C17.34 21.6 16.8 21.06 16.8 20.4V15.6C16.8 14.94 17.34 14.4 18 14.4C18.66 14.4 19.2 14.94 19.2 15.6V20.4ZM18 10.8C17.34 10.8 16.8 10.26 16.8 9.6C16.8 8.94 17.34 8.4 18 8.4C18.66 8.4 19.2 8.94 19.2 9.6C19.2 10.26 18.66 10.8 18 10.8Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
+
+                    Analysis Awaiting Approval
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M26.4 8.4H21.384C20.88 7.008 19.56 6 18 6C16.44 6 15.12 7.008 14.616 8.4H9.60001C8.28001 8.4 7.20001 9.48 7.20001 10.8V27.6C7.20001 28.92 8.28001 30 9.60001 30H26.4C27.72 30 28.8 28.92 28.8 27.6V10.8C28.8 9.48 27.72 8.4 26.4 8.4ZM18 8.4C18.66 8.4 19.2 8.94 19.2 9.6C19.2 10.26 18.66 10.8 18 10.8C17.34 10.8 16.8 10.26 16.8 9.6C16.8 8.94 17.34 8.4 18 8.4ZM19.2 25.2H13.2C12.54 25.2 12 24.66 12 24C12 23.34 12.54 22.8 13.2 22.8H19.2C19.86 22.8 20.4 23.34 20.4 24C20.4 24.66 19.86 25.2 19.2 25.2ZM22.8 20.4H13.2C12.54 20.4 12 19.86 12 19.2C12 18.54 12.54 18 13.2 18H22.8C23.46 18 24 18.54 24 19.2C24 19.86 23.46 20.4 22.8 20.4ZM22.8 15.6H13.2C12.54 15.6 12 15.06 12 14.4C12 13.74 12.54 13.2 13.2 13.2H22.8C23.46 13.2 24 13.74 24 14.4C24 15.06 23.46 15.6 22.8 15.6Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
+
+                    Hidden Analysis
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 252" style="width: 36px; height: 36px;">
+                            <defs>
+                              <style>.cls-1 { fill: rgb(98, 105, 117); stroke-width: 0px; }</style>
+                            </defs>
+                            <path class="cls-1" d="m156.65,109.6h-61.31c-20.75.03-37.56,16.84-37.58,37.58v38.24h136.48v-38.24c-.03-20.75-16.84-37.56-37.58-37.58Z"/>
+                            <circle class="cls-1" cx="126" cy="55.27" r="45.49"/>
+                            <path class="cls-1" d="m151.49,193.6c-1.53-1.54-4.01-1.55-5.55-.02,0,0-.02.02-.02.02-1.52,1.53-1.52,4,0,5.53l13.97,14.09h-80.02c-2.17,0-3.92,1.76-3.92,3.92s1.76,3.92,3.92,3.92h80.26l-14.21,14.17c-1.54,1.53-1.55,4.01-.02,5.55,0,0,.02.02.02.02,1.53,1.54,4.01,1.55,5.55.02l.02-.02,15.19-15.23c4.54-4.59,4.51-12.02,0-16.64l-15.19-15.34Z"/>
+                          </svg>
+                    </span>
+
+                    Feedback Provided
+                </a>
+            </li>
+            <li>
+                <a href="#">
 
 
-      <br>
-    </div><!-- br-sideleft -->
-    <!-- ########## END: LEFT PANEL ########## -->
+                    <span>
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            style="width: 36px; height: 36px;" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                            xml:space="preserve">
+                            <path
+                                d="M322.4,217.8H189.6c-44.9,0.1-81.3,36.5-81.4,81.4V382h295.5v-82.8C403.7,254.3,367.3,217.9,322.4,217.8z"
+                                fill="#616875" />
+                            <circle cx="256" cy="100.5" r="98.5" fill="#616875" />
+                            <path d="M157.2,467.3l32.2,32.3c0,0,0,0,0,0c3.3,3.2,8.5,3.2,11.8,0l0,0c0,0,0,0,0,0c3.2-3.3,3.2-8.5,0-11.8l-30.1-30h170.1
+                            c4.6,0,8.3-3.7,8.3-8.3l0,0c0-4.6-3.7-8.3-8.3-8.3H171.6l29.6-29.9c3.2-3.2,3.2-8.5,0-11.7l0,0c0,0,0,0,0,0c-3.3-3.2-8.5-3.2-11.8,0
+                            L157.2,432C147.6,441.8,147.6,457.5,157.2,467.3z" fill="#616875" />
+                        </svg>
+                    </span>
+
+                    Feedback Received
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24"
+                            style="width: 20px !important; height: 27px;">
+                            <path
+                                d="m8,12c3.309,0,6-2.691,6-6S11.309,0,8,0,2,2.691,2,6s2.691,6,6,6Zm0,2C3.589,14,0,17.589,0,22v1c0,.552.448,1,1,1h14c.552,0,1-.448,1-1v-1c0-4.411-3.589-8-8-8Zm15.697-3.783l-3.992,3.875c-.581.582-1.368.907-2.205.907s-1.624-.326-2.215-.917l-1.971-1.854c-.402-.378-.421-1.011-.042-1.414.379-.402,1.011-.421,1.414-.042l1.992,1.875c.471.47,1.195.449,1.623.021l4.002-3.886c.396-.385,1.029-.375,1.414.021.385.396.375,1.03-.021,1.414Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
+
+
+                    Feedback Applied
+                </a>
+            </li>
+            <li>
+                <a href="analysis-settings.html">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M26.5912 19.176C26.6392 18.792 26.6752 18.408 26.6752 18C26.6752 17.592 26.6392 17.208 26.5912 16.824L29.1232 14.844C29.3512 14.664 29.4112 14.34 29.2672 14.076L26.8672 9.924C26.7232 9.66 26.3992 9.564 26.1352 9.66L23.1472 10.86C22.5232 10.38 21.8512 9.984 21.1192 9.684L20.6632 6.504C20.6272 6.216 20.3752 6 20.0752 6H15.2752C14.9752 6 14.7232 6.216 14.6872 6.504L14.2312 9.684C13.4992 9.984 12.8272 10.392 12.2032 10.86L9.2152 9.66C8.9392 9.552 8.6272 9.66 8.4832 9.924L6.0832 14.076C5.9272 14.34 5.9992 14.664 6.2272 14.844L8.7592 16.824C8.7112 17.208 8.6752 17.604 8.6752 18C8.6752 18.396 8.7112 18.792 8.7592 19.176L6.2272 21.156C5.9992 21.336 5.9392 21.66 6.0832 21.924L8.4832 26.076C8.6272 26.34 8.9512 26.436 9.2152 26.34L12.2032 25.14C12.8272 25.62 13.4992 26.016 14.2312 26.316L14.6872 29.496C14.7232 29.784 14.9752 30 15.2752 30H20.0752C20.3752 30 20.6272 29.784 20.6632 29.496L21.1192 26.316C21.8512 26.016 22.5232 25.608 23.1472 25.14L26.1352 26.34C26.4112 26.448 26.7232 26.34 26.8672 26.076L29.2672 21.924C29.4112 21.66 29.3512 21.336 29.1232 21.156L26.5912 19.176ZM17.6752 22.2C15.3592 22.2 13.4752 20.316 13.4752 18C13.4752 15.684 15.3592 13.8 17.6752 13.8C19.9912 13.8 21.8752 15.684 21.8752 18C21.8752 20.316 19.9912 22.2 17.6752 22.2Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
+                    Analysis Settings
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M21.108 6.708C20.652 6.252 20.04 6 19.404 6H10.8C9.48002 6 8.40002 7.08 8.40002 8.4V27.6C8.40002 28.92 9.46802 30 10.788 30H25.2C26.52 30 27.6 28.92 27.6 27.6V14.196C27.6 13.56 27.348 12.948 26.892 12.504L21.108 6.708ZM21.6 22.8H19.2V25.2C19.2 25.86 18.66 26.4 18 26.4C17.34 26.4 16.8 25.86 16.8 25.2V22.8H14.4C13.74 22.8 13.2 22.26 13.2 21.6C13.2 20.94 13.74 20.4 14.4 20.4H16.8V18C16.8 17.34 17.34 16.8 18 16.8C18.66 16.8 19.2 17.34 19.2 18V20.4H21.6C22.26 20.4 22.8 20.94 22.8 21.6C22.8 22.26 22.26 22.8 21.6 22.8ZM19.2 13.2V7.8L25.8 14.4H20.4C19.74 14.4 19.2 13.86 19.2 13.2Z"
+                                fill="#616875" />
+                        </svg>
+                    </span>
+                    Report
+                </a>
+            </li>
+        </ul>
+    </div>
