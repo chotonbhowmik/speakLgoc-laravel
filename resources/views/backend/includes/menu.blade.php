@@ -1,6 +1,6 @@
   <div class="sideNavbar">
         <div class="sideNavbar__logo">
-            <a href="#"><img src="assets/img/logo.svg" alt width="210" /></a>
+            <a href="#"><img src="{{ asset('Backend/img/logo.svg') }}" alt width="210" /></a>
         </div>
         <ul class="list-unstyled p-0 m-0">
             <li>

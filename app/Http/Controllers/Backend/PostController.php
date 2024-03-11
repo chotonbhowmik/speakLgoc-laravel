@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Post;
-use App\Models\Backend\AnalysisQuestion;
-use App\Models\Backend\AnalysisAnswer;
+use App\Models\Backend\Analysis;
+use App\Models\Backend\IdentifyError;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 // use APP\Models\Backend\Post;
@@ -20,9 +20,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
-        return view('backend.pages.post.create', compact('posts'));
+        // $analyses = Analysis::all();
+        // $posts = Post::orderBy('id', 'desc')->get();
+        // dd($analyses);
+        // return view('backend.pages.post.create', compact('posts', 'analyses'));
     }
+
+
+
 
 
     /**
@@ -32,9 +37,10 @@ class PostController extends Controller
 
     {
 
-
+        $analyses = Analysis::all();
+        $identifyError = IdentifyError::all();
         $posts = Post::orderBy('id', 'desc')->get();
-        return view('backend.pages.post.create', compact('posts'));
+        return view('backend.pages.post.create', compact('posts', 'analyses','identifyError'));
     }
 
     /**
@@ -47,6 +53,7 @@ class PostController extends Controller
 
         // Set the properties of the post model from the form inputs
         $post->article_title = $request->input('article_title');
+        $post->Create_Article_Straight = $request->input('Create_Article_Straight');
         $post->provider_name = $request->input('provider_name');
         $post->person_name = $request->input('person_name');
         $post->person_location = $request->input('person_location');
@@ -92,6 +99,17 @@ $post->Post_event_observation = $request->input('Post_event_observation');
 
 
     }
+    public function showModal($id)
+    {
+        // Fetch the post based on the provided ID
+        $post = Post::findOrFail($id);
+        // Pass the post data to the modal view
+        return view('backend.pages.post.create', compact('post'));
+    }
+
+
+
+
 
     /**
      * Display the specified resource.

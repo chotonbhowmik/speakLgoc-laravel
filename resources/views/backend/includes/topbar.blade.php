@@ -4,16 +4,16 @@
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="toggleIcon">
-                        <a href="javascript:void(0)" class="toggle-btn"><img src="assets/img/toggle-icon.svg" alt
+                        <a href="javascript:void(0)" class="toggle-btn"><img src=" {{ asset('Backend/img/toggle-icon.svg') }}" alt
                                 width="45" /></a>
-                        <a href="#" class="d-sm-none mob-search-btn"><img src="assets/img/search-icon.svg" alt
+                        <a href="#" class="d-sm-none mob-search-btn"><img src=" {{ asset('Backend/img/search-icon.svg') }}" alt
                                 width="20" /></a>
                     </div>
                     <div class="headerSearch">
                         <form action>
                             <div class="form-field position-relative m-0">
                                 <input type="search" placeholder="Search" class="form-control" />
-                                <img src="assets/img/search-icon.svg" alt class="headerSearch__icon" />
+                                <img src=" {{ asset('Backend/img/search-icon.svg') }}"  alt class="headerSearch__icon" />
                             </div>
                         </form>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="userDd">
                             <div class="dropdown">
                                 <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Admin &nbsp; <img src="assets/img/angle-icon.svg" alt />
+                                    Admin &nbsp; <img src="{{ asset('Backend/img/angle-icon.svg') }}" alt />
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -101,4 +101,4 @@
             </div>
         </header>
 
-   
+
