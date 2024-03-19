@@ -18,5 +18,6 @@
     </div>
 
 @include('backend.includes.script')
+
   </body>
 </html>

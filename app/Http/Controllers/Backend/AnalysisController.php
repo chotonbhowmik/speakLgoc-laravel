@@ -28,8 +28,9 @@ class AnalysisController extends Controller
         $analysis = new Analysis();
         $analysis->post_id = $request->input('post_id');
         $analysis->content = $request->input('analysis_description');
-        $analysis->save();
 
+        $analysis->save();
+        
         return redirect()->route('post.create');
     }
 }

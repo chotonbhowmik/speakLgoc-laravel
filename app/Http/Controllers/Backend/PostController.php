@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Backend\Post;
 use App\Models\Backend\Analysis;
 use App\Models\Backend\IdentifyError;
+use App\Models\Backend\IdentifyCompensator;
+use App\Models\Backend\Question;
+use App\Models\Backend\Answer;
+use App\Models\Backend\Problem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 // use APP\Models\Backend\Post;
@@ -40,7 +44,11 @@ class PostController extends Controller
         $analyses = Analysis::all();
         $identifyError = IdentifyError::all();
         $posts = Post::orderBy('id', 'desc')->get();
-        return view('backend.pages.post.create', compact('posts', 'analyses','identifyError'));
+        $IdentifyCompensators = IdentifyCompensator::orderBy('id', 'desc')->get();
+        $questions = Question::orderBy('id', 'desc')->get();
+        $answers = Answer::orderBy('id', 'desc')->get();
+        $problems = Problem::orderBy('id', 'desc')->get();
+        return view('backend.pages.post.create', compact('posts', 'analyses','identifyError', 'IdentifyCompensators', 'questions', 'answers', 'problems'));
     }
 
     /**

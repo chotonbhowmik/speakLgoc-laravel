@@ -20,4 +20,12 @@ class Post extends Model
     {
         return $this->hasMany(IdentifyError::class);
     }
+    public function IdentifyCompensator()
+    {
+        return $this->hasMany(IdentifyCompensator::class);
+    }
+    public function Answer()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

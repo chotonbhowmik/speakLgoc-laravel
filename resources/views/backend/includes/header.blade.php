@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('Backend/css/text-editor.css') }}" />
     <link rel="stylesheet" href="{{ asset('Backend/css/dashboard.css') }}"/>
     <link rel="stylesheet" href="{{ asset('Backend/css/responsive.css') }}" />
+    
 </head>
 
 <body>

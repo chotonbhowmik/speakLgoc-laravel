@@ -7,7 +7,10 @@ use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\ErrorController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\AnalysisController;
-
+use App\Http\Controllers\Backend\IdentifyCompensatorController;
+use App\Http\Controllers\Backend\QuestionController;
+use App\Http\Controllers\Backend\AnswerController;
+use App\Http\Controllers\Backend\ProblemController;
 use App\Models\Backend\Post;
 
 /*
@@ -75,6 +78,16 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/submit-error', [ErrorController::class, 'store'])->name('error.store');
     Route::delete('/identify-errors/{id}', [ErrorController::class, 'destroy'])->name('error.destroy');
+
+    Route::post('/admin/identify-compensator/store', [IdentifyCompensatorController::class, 'store'])->name('identify-compensator.store');
+    Route::delete('/identify-compensator/delete/{id}', [IdentifyCompensatorController::class, 'destroy'])->name('identify-compensator.destroy');
+    Route::post('/questions', [QuestionController::class, 'store'])->name('question.store');
+    Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+    Route::post('/answers', [AnswerController::class, 'store'])->name('answers.store');
+    Route::delete('/answers/{id}', [AnswerController::class, 'destroy'])->name('answers.destroy');
+    Route::post('/problems', [ProblemController::class, 'store'])->name('problems.store');
+    Route::delete('/problems/{id}', [ProblemController::class, 'destroy'])->name('problems.destroy');
+
 
 
 

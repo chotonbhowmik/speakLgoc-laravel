@@ -638,14 +638,7 @@
                                                         <div class="tab-pane fade show active" id="home-tab-pane"
                                                             role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
-{{-- to show the analysis data
-    @if ($analyses->isEmpty())
-    <p>No analyses found.</p>
-@else
-    <!-- Your table code here -->
-@endif
 
-     --}}
      <div class="myDataTable table-responsive">
     <table class="table" style="width: 100%">
         <thead>
@@ -655,7 +648,7 @@
         </thead>
         <tbody>
              @foreach($analyses->where('post_id', $post->id) as $analysis)
-            <tr><td>{{ $analysis->content }}</td></tr>
+            <tr><td>{!! $analysis->content !!}</td></tr>
         @endforeach
         </tbody>
     </table>
@@ -669,9 +662,9 @@
     <div class="row">
         <div class="col-12">
             <input type="hidden" name="post_id" value="{{ $post->id }}">
-            <div class="form-field">
+            <div class="form-field" >
                 <!-- Replace the div with textarea -->
-                <textarea class="form-control" name="analysis_description" rows="3"></textarea>
+                <textarea class="form-control" name="analysis_description" rows="7" id="editor"></textarea>
             </div>
         </div>
     </div>
@@ -714,7 +707,7 @@
     <td>{{ $error->from_comm_app }}</td>
     <td>{{ $error->actual_error }}</td>
     <td>{{ $error->entity_error_point_to }}</td>
-    <td>{{ $error->error_description }}</td>
+    <td>{!! $error->error_description !!}</td>
     <td>{{ $error->created_at }}</td>
     <td>
         <div class="addRemove-opt">
@@ -762,208 +755,273 @@
                                                         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
                                                             aria-labelledby="contact-tab" tabindex="0">
                                                             <div class="myDataTable table-responsive">
-                                                                <table class="table" style="width: 100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Compensator #</th>
-                                                                            <th>Actual Compensator</th>
-                                                                            <th>Compensator Date</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td>
-                                                                                <div class="addRemove-opt">
-                                                                                    <a href="#" id="add-opt-comp">
-                                                                                        <img src="{{ asset('Backend/img/plus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                    <a href=""
-                                                                                        id="remove-opt-comp">
-                                                                                        <img src=" {{ asset('Backend/img/minus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                            @if($IdentifyCompensators->where('post_id', $post->id)->isNotEmpty())
+    <table class="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Compensator #</th>
+                <th>Actual Compensator</th>
+                <th>Compensator Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($IdentifyCompensators->where('post_id', $post->id) as $compensator)
+                <tr>
+                    <td>{{ $compensator->id }}</td>
+                    <td>{!! $compensator->compensator_description !!}</td>
+                    <td>{{ $compensator->created_at }}</td>
+                    <td>
+                        <div class="addRemove-opt">
+                            <a href="#" id="add-opt-comp">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                            </a>
+                          <form action="{{ route('identify-compensator.destroy', $compensator->id) }}" method="POST" class="d-inline">
+    @csrf
+    @method('DELETE')
+    <button type="submit" id="remove-opt-comp" style="border: none; background: none; cursor: pointer;">
+        <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+    </button>
+</form>
+
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@else
+    <table class="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Compensator #</th>
+                <th>Actual Compensator</th>
+                <th>Compensator Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="addRemove-opt">
+                        <a href="#" id="add-opt-comp">
+                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+@endif
+
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="contact-tab-pane1" role="tabpanel"
                                                             aria-labelledby="contact-tab1" tabindex="0">
                                                             <div class="myDataTable table-responsive">
-                                                                <table class="table" style="width: 100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Question #</th>
-                                                                            <th>Actual Question</th>
-                                                                            <th>Entity Question Point To</th>
-                                                                            <th>Question Date</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td>
-                                                                                <div class="addRemove-opt">
-                                                                                    <a href="#" id="add-opt-ques">
-                                                                                        <img src="{{ asset('Backend/img/plus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                    <a href=""
-                                                                                        id="remove-opt-comp">
-                                                                                        <img src="{{ asset('Backend/img/minus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>Second Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>Third Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td></td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                               @if($questions->isEmpty())
+    <table class="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Question #</th>
+                <th>Actual Question</th>
+                <th>Entity Question Point To</th>
+                <th>Question Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="addRemove-opt">
+                        <a href="#" id="add-opt-ques">
+                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                        </a>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+@else
+    <table class="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Question #</th>
+                <th>Actual Question</th>
+                <th>Entity Question Point To</th>
+                <th>Question Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($questions->where('post_id', $post->id) as $question)
+                <tr>
+                    <td>{{ $question->id }}</td>
+                    <td>{!! $question->actual_question !!}</td>
+                    <td>{{ $question->entity_question_point_to }}</td>
+                    <td>{{ $question->created_at }}</td>
+                    <td>
+                        <div class="addRemove-opt">
+                            <a href="#" id="add-opt-ques">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                            </a>
+                          <form action="{{ route('questions.destroy', $question->id) }}" method="POST" class="d-inline">
+    @csrf
+    @method('DELETE')
+    <button type="submit" id="remove-opt-comp" style="border: none; background: none; cursor: pointer;">
+        <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+    </button>
+</form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
+
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="contact-tab-pane2" role="tabpanel"
                                                             aria-labelledby="contact-tab2" tabindex="0">
                                                             <div class="myDataTable table-responsive">
                                                                 <table class="table" style="width: 100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Answer #</th>
-                                                                            <th>Actual Answer</th>
-                                                                            <th>Information Answer Point To</th>
-                                                                            <th>Entity Question Point To</th>
-                                                                            <th>Answer Date</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td>
-                                                                                <div class="addRemove-opt">
-                                                                                    <a href="#" id="add-opt-ans">
-                                                                                        <img src="{{ asset('Backend/img/plus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                    <a href="" id="remove-opt-ans">
-                                                                                        <img src="{{ asset('Backend/img/minus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>25 Ma y, 2023</td>
-                                                                            <td>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
+    <thead>
+        <tr>
+            <th>Answer #</th>
+            <th>Actual Answer</th>
+            <th>Information Answer Point To</th>
+            <th>Entity Question Point To</th>
+            <th>Answer Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    @if($answers->isNotEmpty())
+        <tbody>
+            @foreach($answers as $answer)
+                <tr>
+                    <td>{{ $answer->id }}</td>
+                    <td>{!! $answer->actual_question !!}</td>
+                    <td>{{ $answer->entity_question_point_to }}</td>
+                    <td>{{ $answer->information_answer_point_to }}</td>
+                    <td>{{ $answer->created_at->format('d M Y') }}</td>
+                    <td>
+                        <div class="addRemove-opt">
+                            <a href="#" id="add-opt-ans">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                            </a>
+                              <form action="{{ route('answers.destroy', $answer->id) }}" method="POST" class="d-inline">
+    @csrf
+    @method('DELETE')
+    <button type="submit" id="remove-opt-comp" style="border: none; background: none; cursor: pointer;">
+        <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+    </button>
+</form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    @else
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="addRemove-opt">
+                        <a href="#" id="add-opt-ans">
+                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    @endif
+</table>
+
+
                                                                 </table>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="contact-tab-pane3" role="tabpanel"
                                                             aria-labelledby="contact-tab3" tabindex="0">
                                                             <div class="myDataTable table-responsive">
-                                                                <table class="table" style="width: 100%">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Problem #</th>
-                                                                            <th>Actual Problem</th>
-                                                                            <th>Problem Name</th>
-                                                                            <th>From Actual Error</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>
-                                                                                <div class="addRemove-opt">
-                                                                                    <a href="#" id="add-opt-prob">
-                                                                                        <img src="{{ asset('Backend/img/plus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                    <a href=""
-                                                                                        id="remove-opt-prob">
-                                                                                        <img src="{{ asset('Backend/img/minus-icon.svg') }}"
-                                                                                            alt="" width="24">
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>First Question</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>Lorem Ispsum aadsd</td>
-                                                                            <td>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
+                                                               @if($problems->isEmpty())
+    <table class="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Problem #</th>
+                <th>Actual Problem</th>
+                <th>Problem Name</th>
+                <th>From Actual Error</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <div class="addRemove-opt">
+                        <a href="#" id="add-opt-prob">
+                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+@else
+    <table class="table" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Problem #</th>
+                <th>Actual Problem</th>
+                <th>Problem Name</th>
+                <th>From Actual Error</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($problems as $problem)
+                <tr>
+                    <td>{{ $problem->id }}</td>
+                    <td>{{ $problem->actual_problem }}</td>
+                    <td>{{ $problem->problem_name }}</td>
+                    <td>{{ $problem->actual_error }}</td>
+                    <td>
+                        <div class="addRemove-opt">
+                            <a href="#" id="add-opt-prob">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
+                            </a>
+                           <form action="{{ route('problems.destroy', $problem->id) }}" method="POST" class="d-inline">
+    @csrf
+    @method('DELETE')
+    <button type="submit" id="remove-opt-comp" style="border: none; background: none; cursor: pointer;">
+        <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+    </button>
+</form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1052,8 +1110,8 @@
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                 <h6>Error Description</h6>
                 <div class="form-group">
-                    <label for="error_description">Error Description</label>
-                    <textarea class="form-control" id="error_description" name="error_description" rows="3" required></textarea>
+
+                    <textarea class="form-control"  name="error_description" rows="3" id="editor_one"></textarea>
                 </div>
             </div>
         </div>
@@ -1096,7 +1154,7 @@
                                                                         alt class="m-auto" width="40" />
                                                                 </div>
                                                                 <div class="modal-title">
-                                                                    <h3>Identify Compensator</h3>
+                                                                    <h3>Identify Compensator fhfdh</h3>
                                                                     <span>Thursday May 25, 2023 10:10 AM</span>
                                                                 </div>
                                                             </div>
@@ -1110,82 +1168,68 @@
                                                     </div>
 
                                                     <div class="modal-body p-4">
-                                                        <form action="">
-                                                            <div class="row">
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id=""
-                                                                            placeholder="Actual Compensator"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src=" {{ asset('Backend/img/info-icon.svg') }}"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                       <form action="{{ route('identify-compensator.store') }}" method="POST">
+    @csrf
+    <div class="row">
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="actual_compensator" placeholder="Actual Compensator" class="form-control" required />
+            </div>
+            <div class="text-end align-items-center d-flex justify-content-end ms-3">
+                <div class="myTooltip position-relative">
+                    <img src="{{ asset('Backend/img/info-icon.svg') }}" alt="" width="26">
+                    <span>Tooltip content will be here.</span>
+                </div>
+            </div>
+        </div>
 
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id=""
-                                                                            placeholder="Actual Error to Replace"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src="{{ asset('Backend/img/info-icon.svg') }}"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="actual_error_to_replace" placeholder="Actual Error to Replace" class="form-control" required />
+            </div>
+            <div class="text-end align-items-center d-flex justify-content-end ms-3">
+                <div class="myTooltip position-relative">
+                    <img src="{{ asset('Backend/img/info-icon.svg') }}" alt="" width="26">
+                    <span>Tooltip content will be here.</span>
+                </div>
+            </div>
+        </div>
 
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id=""
-                                                                            placeholder="In Actual App/Comm"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src="{{ asset('Backend/img/info-icon.svg') }}"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="text-ed-outer p-3 mt-4">
-                                                                        <h6>Compensator Description</h6>
-                                                                        <div id="editor3"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="mt-4">
-                                                                        <div class="form-field text-end">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Submit"
-                                                                                class="btn btn-lg btn-success">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Cancel"
-                                                                                class="btn btn-lg btn-danger">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="in_actual_app_comm" placeholder="In Actual App/Comm" class="form-control" required />
+            </div>
+            <div class="text-end align-items-center d-flex justify-content-end ms-3">
+                <div class="myTooltip position-relative">
+                    <img src="{{ asset('Backend/img/info-icon.svg') }}" alt="" width="26">
+                    <span>Tooltip content will be here.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+                <h6>Compensator Description</h6>
+                <div class="form-field">
+                    <textarea class="form-control" name="compensator_description" rows="3" id="editor_two"></textarea>
+                </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mt-4">
+                <div class="form-field text-end">
+                    <input type="submit" value="Submit" class="btn btn-lg btn-success">
+                    <input type="reset" value="Cancel" class="btn btn-lg btn-danger">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1223,48 +1267,44 @@
                                                     </div>
 
                                                     <div class="modal-body p-4">
-                                                        <form action="">
-                                                            <div class="row">
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id=""
-                                                                            placeholder="Entity Question point to"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src=" {{ asset('Backend/img/info-icon.svg') }}"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="text-ed-outer p-3 mt-4">
-                                                                        <h6>Actual Question </h6>
-                                                                        <div id="editor4"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="mt-4">
-                                                                        <div class="form-field text-end">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Submit"
-                                                                                class="btn btn-lg btn-success">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Cancel"
-                                                                                class="btn btn-lg btn-danger">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
+                                                       <form action="{{ route('question.store') }}" method="POST">
+    @csrf
+    <div class="row">
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="entity_question_point_to" placeholder="Entity Question point to" class="form-control" required>
+            </div>
+            <div class="text-end align-items-center d-flex justify-content-end ms-3">
+                <div class="myTooltip position-relative">
+                    <img src="{{ asset('Backend/img/info-icon.svg') }}" alt="" width="26">
+                    <span>Tooltip content will be here.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <input type="hidden" name="post_id" value="{{ $post->id }}">
+            <div class="text-ed-outer p-3 mt-4">
+                <h6>Actual Question</h6>
+                <div class="form-field">
+                    <textarea class="form-control" name="actual_question"  rows="3" id="editor_three"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mt-4">
+                <div class="form-field text-end">
+                    <input type="submit" value="Submit" class="btn btn-lg btn-success">
+                    <input type="submit" value="Cancel" class="btn btn-lg btn-danger">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1302,76 +1342,55 @@
                                                     </div>
 
                                                     <div class="modal-body p-4">
-                                                        <form action="">
-                                                            <div class="row">
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
+                                                       <form action="{{ route('answers.store') }}" method="POST">
+    @csrf
+    <input type="hidden" name="post_id" value="{{ $post->id }}">
+    <div class="row">
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <select name="actual_question" class="form-select" required>
+                    <option value="">Select Actual Question</option>
+                    <option value="Question 1">Question 1</option>
+                    <option value="Question 2">Question 2</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="entity_question_point_to" placeholder="Entity Question point to" class="form-control" required>
+            </div>
+            <!-- Tooltip content here -->
+        </div>
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="information_answer_point_to" placeholder="Information Answer Point To" class="form-control" required>
+            </div>
+            <!-- Tooltip content here -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-ed-outer p-3 mt-4">
+                <h6>Actual Answer</h6>
+                <div class="form-field">
+                    <textarea class="form-control" name="actual_answer" rows="3" id="editor_four"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mt-4">
+                <div class="form-field text-end">
+                    <input type="submit" value="Submit" class="btn btn-lg btn-success">
+                    <input type="submit" value="Cancel" class="btn btn-lg btn-danger">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-                                                                        <select name="" id=""
-                                                                            class="form-select">
-                                                                            <option value="">Select Actual Question
-                                                                            </option>
-                                                                            <option value="">Question 1</option>
-                                                                            <option value="">Question 2</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id=""
-                                                                            placeholder="Entity Question point to"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src="assets/img/info-icon.svg"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id=""
-                                                                            placeholder="Information Answer Point To"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src="assets/img/info-icon.svg"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="text-ed-outer p-3 mt-4">
-                                                                        <h6>Actual Answer </h6>
-                                                                        <div id="editor5"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="mt-4">
-                                                                        <div class="form-field text-end">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Submit"
-                                                                                class="btn btn-lg btn-success">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Cancel"
-                                                                                class="btn btn-lg btn-danger">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1409,74 +1428,64 @@
                                                     </div>
 
                                                     <div class="modal-body p-4">
-                                                        <form action="">
-                                                            <div class="row">
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id="" placeholder="Actual Problem"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src="assets/img/info-icon.svg"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
-                                                                        <input type="text" name=""
-                                                                            id="" placeholder="Problem Name"
-                                                                            class="form-control" required />
-                                                                    </div>
-                                                                    <div
-                                                                        class="text-end align-items-center d-flex justify-content-end ms-3">
-                                                                        <div class="myTooltip position-relative">
-                                                                            <img src="assets/img/info-icon.svg"
-                                                                                alt="" width="26">
-                                                                            <span>Tooltip content will be here.</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12 align-items-center d-flex mb-3">
-                                                                    <div class="form-field w-100 m-0">
+                                                        <form action="{{ route('problems.store') }}" method="POST">
+    @csrf
+    <input type="hidden" name="post_id" value="{{ $post->id }}">
+    <div class="row">
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="actual_problem" placeholder="Actual Problem" class="form-control" required>
+            </div>
+            <div class="text-end align-items-center d-flex justify-content-end ms-3">
+                <div class="myTooltip position-relative">
+                    <img src="assets/img/info-icon.svg" alt="" width="26">
+                    <span>Tooltip content will be here.</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <input type="text" name="problem_name" placeholder="Problem Name" class="form-control" required>
+            </div>
+            <div class="text-end align-items-center d-flex justify-content-end ms-3">
+                <div class="myTooltip position-relative">
+                    <img src="assets/img/info-icon.svg" alt="" width="26">
+                    <span>Tooltip content will be here.</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 align-items-center d-flex mb-3">
+            <div class="form-field w-100 m-0">
+                <select name="actual_error" class="form-select">
+                    <option value="">Select Actual Error</option>
+                    <option value="Error 1">Error 1</option>
+                    <option value="Error 2">Error 2</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-ed-outer p-3 mt-4">
+                <h6>Problem Description</h6>
+                <div class="form-field">
+                    <textarea class="form-control" name="problem_description" rows="3" id="editor_five" ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mt-4">
+                <div class="form-field text-end">
+                    <input type="submit" value="Submit" class="btn btn-lg btn-success">
+                    <input type="submit" value="Cancel" class="btn btn-lg btn-danger">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-                                                                        <select name="" id=""
-                                                                            class="form-select">
-                                                                            <option value="">Select Actual Error
-                                                                            </option>
-                                                                            <option value="">Error 1</option>
-                                                                            <option value="">Error 2</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="text-ed-outer p-3 mt-4">
-                                                                        <h6>Problem Description</h6>
-                                                                        <div id="editor6"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="mt-4">
-                                                                        <div class="form-field text-end">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Submit"
-                                                                                class="btn btn-lg btn-success">
-                                                                            <input type="submit" name=""
-                                                                                id="" value="Cancel"
-                                                                                class="btn btn-lg btn-danger">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1677,7 +1686,7 @@
                                                 <h6 class="pt-2 pb-2">Write your Article</h6>
                                                 <div class="form-field">
                                                     <!-- Replace the div with textarea -->
-                                                    <textarea class="form-control" name="aricale_description" rows="3"></textarea>
+                                                    <textarea class="form-control" name="aricale_description" rows="3" id="editor"></textarea>
                                                 </div>
                                                 {{-- <div class="text-ed-outer p-3 mt-2">
                                                             <h6>Write your Article</h6>
@@ -1870,7 +1879,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="information_before_event" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="information_before_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -1881,7 +1890,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="mother_nature" id="is-editer-2" rows="3"></textarea>
+                                            <textarea class="form-control" name="mother_nature" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -1892,7 +1901,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="negative_function" id="is-editer-3" rows="3"></textarea>
+                                            <textarea class="form-control" name="negative_function" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -1903,7 +1912,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="problem_developed" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="problem_developed" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2084,7 +2093,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="information_before_event" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="information_before_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2095,7 +2104,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="mother_nature" id="is-editer-2" rows="3"></textarea>
+                                            <textarea class="form-control" name="mother_nature" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2106,7 +2115,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="negative_function" id="is-editer-3" rows="3"></textarea>
+                                            <textarea class="form-control" name="negative_function" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2117,7 +2126,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="problem_developed" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="problem_developed" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2129,7 +2138,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Relationship_if_any_between" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Relationship_if_any_between" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -2317,7 +2326,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="information_before_event" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="information_before_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2328,7 +2337,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="mother_nature" id="is-editer-2" rows="3"></textarea>
+                                            <textarea class="form-control" name="mother_nature" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2341,7 +2350,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Function_executed_from_event" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Function_executed_from_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2353,7 +2362,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Relationship_if_any_between" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Relationship_if_any_between" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -2539,7 +2548,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="information_before_event" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="information_before_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2550,7 +2559,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="mother_nature" id="is-editer-2" rows="3"></textarea>
+                                            <textarea class="form-control" name="mother_nature" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2563,7 +2572,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="negative_function" id="is-editer-3" rows="3"></textarea>
+                                            <textarea class="form-control" name="negative_function" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2753,7 +2762,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Pre_event_observation" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="Pre_event_observation" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2764,7 +2773,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Function_executed_from_event" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Function_executed_from_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2777,7 +2786,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Post_event_observation" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Post_event_observation" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -2963,7 +2972,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Function_executed_from_event" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Function_executed_from_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -3149,7 +3158,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="information_before_event" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="information_before_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-2 mt-2">
@@ -3159,7 +3168,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="mother_nature" id="is-editer-2" rows="3"></textarea>
+                                            <textarea class="form-control" name="mother_nature" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -3171,7 +3180,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Function_executed_from_event" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Function_executed_from_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -3356,7 +3365,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="information_before_event" id="is-editer-1" rows="3"></textarea>
+                                            <textarea class="form-control" name="information_before_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-2 mt-2">
@@ -3366,7 +3375,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="mother_nature" id="is-editer-2" rows="3"></textarea>
+                                            <textarea class="form-control" name="mother_nature" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -3378,7 +3387,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Function_executed_from_event" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Function_executed_from_event" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 mb-2 mt-2">
@@ -3389,7 +3398,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Replace the div with textarea -->
-                                            <textarea class="form-control" name="Relationship_if_any_between" id="is-editer-4" rows="3"></textarea>
+                                            <textarea class="form-control" name="Relationship_if_any_between" id="editor" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -3552,7 +3561,7 @@
                                     <div class="col-lg-12 col-sm-12 mb-2">
                                         <div class="form-field">
                                             <!-- Add input field for additional information -->
-                                            <textarea name="additional_information" id="additional_information" class="form-control" rows="3"></textarea>
+                                            <textarea name="additional_information" id="additional_information" class="form-control" rows="3" id="editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-sm-12 mb-2">
@@ -3592,4 +3601,51 @@
                 </div>
             </div>
             <!-- Modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            });
+    });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create( document.querySelector( '#editor_one' ) )
+            .catch( error => {
+                console.error( error );
+            });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create( document.querySelector( '#editor_two' ) )
+            .catch( error => {
+                console.error( error );
+            });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create( document.querySelector( '#editor_three' ) )
+            .catch( error => {
+                console.error( error );
+            });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create( document.querySelector( '#editor_four' ) )
+            .catch( error => {
+                console.error( error );
+            });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        ClassicEditor
+            .create( document.querySelector( '#editor_five' ) )
+            .catch( error => {
+                console.error( error );
+            });
+    });
+</script>
+
+
         @endsection
