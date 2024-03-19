@@ -674,7 +674,7 @@
             <div class="mt-4">
                 <div class="form-field text-end">
                     <button type="submit" class="btn btn-lg btn-success">Add Analysis</button>
-                    <button type="button" class="btn btn-lg btn-danger">Cancel</button>
+                    {{-- <button type="button" class="btn btn-lg btn-danger">Cancel</button> --}}
                 </div>
             </div>
         </div>
@@ -689,7 +689,27 @@
                                                             <div class="myDataTable table-responsive">
 
                                                                 {{-- error showing table --}}
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+       <div class="d-flex justify-content-end">
+    <div class="addRemove-opt">
+        <button href="#" id="add-opt" class="btn btn-success my-3">
+            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+            Add Error
+        </button>
+        {{-- <a href="" id="remove-opt">
+            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+        </a> --}}
+    </div>
+</div>
 
+    </td>
+</tr>
                                                                 <table class="table" style="width: 100%">
                                                                     <thead>
                                                                         <tr>
@@ -711,9 +731,9 @@
     <td>{{ $error->created_at }}</td>
     <td>
         <div class="addRemove-opt">
-            <a href="#" id="add-opt">
+            {{-- <a href="#" id="add-opt">
                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-            </a>
+            </a> --}}
              <form action="{{ route('error.destroy', $error->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
@@ -726,25 +746,9 @@
 </tr>
 @endforeach
 
-@if($identifyError->where('post_id', $post->id)->isEmpty())
-<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>
-        <div class="addRemove-opt">
-            <a href="#" id="add-opt">
-                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-            </a>
-            {{-- <a href="" id="remove-opt">
-                <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
-            </a> --}}
-        </div>
-    </td>
-</tr>
-@endif
+{{-- @if($identifyError->where('post_id', $post->id)->isEmpty()) --}}
+
+{{-- @endif --}}
 
                                                                     </tbody>
                                                                 </table>
@@ -755,7 +759,19 @@
                                                         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
                                                             aria-labelledby="contact-tab" tabindex="0">
                                                             <div class="myDataTable table-responsive">
-                                                            @if($IdentifyCompensators->where('post_id', $post->id)->isNotEmpty())
+
+                                                          <div class="d-flex justify-content-end">
+    <div class="addRemove-opt">
+         <button href="#" id="add-opt-comp" class="btn btn-success my-3">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+                                Add Compensator
+                            </button>
+        {{-- <a href="" id="remove-opt">
+            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+        </a> --}}
+    </div>
+</div>
+
     <table class="table" style="width: 100%">
         <thead>
             <tr>
@@ -773,9 +789,9 @@
                     <td>{{ $compensator->created_at }}</td>
                     <td>
                         <div class="addRemove-opt">
-                            <a href="#" id="add-opt-comp">
+                            {{-- <a href="#" id="add-opt-comp">
                                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                            </a>
+                            </a> --}}
                           <form action="{{ route('identify-compensator.destroy', $compensator->id) }}" method="POST" class="d-inline">
     @csrf
     @method('DELETE')
@@ -790,67 +806,28 @@
             @endforeach
         </tbody>
     </table>
-@else
-    <table class="table" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Compensator #</th>
-                <th>Actual Compensator</th>
-                <th>Compensator Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="addRemove-opt">
-                        <a href="#" id="add-opt-comp">
-                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-@endif
+
+
+
 
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="contact-tab-pane1" role="tabpanel"
                                                             aria-labelledby="contact-tab1" tabindex="0">
                                                             <div class="myDataTable table-responsive">
-                                                               @if($questions->isEmpty())
-    <table class="table" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Question #</th>
-                <th>Actual Question</th>
-                <th>Entity Question Point To</th>
-                <th>Question Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="addRemove-opt">
-                        <a href="#" id="add-opt-ques">
-                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                        </a>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-@else
+
+ <div class="d-flex justify-content-end">
+    <div class="addRemove-opt">
+         <button href="#" id="add-opt-ques" class="btn btn-success my-3">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+                                Add Question
+                            </button>
+        {{-- <a href="" id="remove-opt">
+            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+        </a> --}}
+    </div>
+</div>
     <table class="table" style="width: 100%">
         <thead>
             <tr>
@@ -870,9 +847,9 @@
                     <td>{{ $question->created_at }}</td>
                     <td>
                         <div class="addRemove-opt">
-                            <a href="#" id="add-opt-ques">
+                            {{-- <a href="#" id="add-opt-ques">
                                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                            </a>
+                            </a> --}}
                           <form action="{{ route('questions.destroy', $question->id) }}" method="POST" class="d-inline">
     @csrf
     @method('DELETE')
@@ -886,13 +863,24 @@
             @endforeach
         </tbody>
     </table>
-@endif
+
 
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="contact-tab-pane2" role="tabpanel"
                                                             aria-labelledby="contact-tab2" tabindex="0">
                                                             <div class="myDataTable table-responsive">
+                                                                 <div class="d-flex justify-content-end">
+    <div class="addRemove-opt">
+         <button href="#" id="add-opt-ans" class="btn btn-success my-3">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+                                Add Answer
+                            </button>
+        {{-- <a href="" id="remove-opt">
+            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+        </a> --}}
+    </div>
+</div>
                                                                 <table class="table" style="width: 100%">
     <thead>
         <tr>
@@ -904,7 +892,7 @@
             <th>Action</th>
         </tr>
     </thead>
-    @if($answers->isNotEmpty())
+
         <tbody>
             @foreach($answers as $answer)
                 <tr>
@@ -915,9 +903,9 @@
                     <td>{{ $answer->created_at->format('d M Y') }}</td>
                     <td>
                         <div class="addRemove-opt">
-                            <a href="#" id="add-opt-ans">
+                            {{-- <a href="#" id="add-opt-ans">
                                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                            </a>
+                            </a> --}}
                               <form action="{{ route('answers.destroy', $answer->id) }}" method="POST" class="d-inline">
     @csrf
     @method('DELETE')
@@ -930,24 +918,7 @@
                 </tr>
             @endforeach
         </tbody>
-    @else
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="addRemove-opt">
-                        <a href="#" id="add-opt-ans">
-                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    @endif
+
 </table>
 
 
@@ -957,34 +928,18 @@
                                                         <div class="tab-pane fade" id="contact-tab-pane3" role="tabpanel"
                                                             aria-labelledby="contact-tab3" tabindex="0">
                                                             <div class="myDataTable table-responsive">
-                                                               @if($problems->isEmpty())
-    <table class="table" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Problem #</th>
-                <th>Actual Problem</th>
-                <th>Problem Name</th>
-                <th>From Actual Error</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <div class="addRemove-opt">
-                        <a href="#" id="add-opt-prob">
-                            <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-@else
+                                                                 <div class="d-flex justify-content-end">
+    <div class="addRemove-opt">
+         <button href="#" id="add-opt-prob" class="btn btn-success my-3">
+                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+                                Add Problem
+                            </button>
+        {{-- <a href="" id="remove-opt">
+            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
+        </a> --}}
+    </div>
+</div>
+
     <table class="table" style="width: 100%">
         <thead>
             <tr>
@@ -1004,9 +959,9 @@
                     <td>{{ $problem->actual_error }}</td>
                     <td>
                         <div class="addRemove-opt">
-                            <a href="#" id="add-opt-prob">
+                            {{-- <a href="#" id="add-opt-prob">
                                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24">
-                            </a>
+                            </a> --}}
                            <form action="{{ route('problems.destroy', $problem->id) }}" method="POST" class="d-inline">
     @csrf
     @method('DELETE')
@@ -1020,7 +975,7 @@
             @endforeach
         </tbody>
     </table>
-@endif
+
 
                                                             </div>
                                                         </div>
@@ -1121,8 +1076,9 @@
         <div class="col-12">
             <div class="mt-4">
                 <div class="form-field text-end">
-                    <input type="submit" value="Submit" class="btn btn-lg btn-success">
-                    <input type="button" value="Cancel" class="btn btn-lg btn-danger">
+                    {{-- <input type="submit" value="Submit" class="btn btn-lg btn-success"> --}}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
                 </div>
             </div>
         </div>
@@ -1223,7 +1179,7 @@
             <div class="mt-4">
                 <div class="form-field text-end">
                     <input type="submit" value="Submit" class="btn btn-lg btn-success">
-                    <input type="reset" value="Cancel" class="btn btn-lg btn-danger">
+                    {{-- <input type="reset" value="Cancel" class="btn btn-lg btn-danger"> --}}
                 </div>
             </div>
         </div>
@@ -1298,7 +1254,7 @@
             <div class="mt-4">
                 <div class="form-field text-end">
                     <input type="submit" value="Submit" class="btn btn-lg btn-success">
-                    <input type="submit" value="Cancel" class="btn btn-lg btn-danger">
+                    {{-- <input type="submit" value="Cancel" class="btn btn-lg btn-danger"> --}}
                 </div>
             </div>
         </div>
@@ -1383,7 +1339,7 @@
             <div class="mt-4">
                 <div class="form-field text-end">
                     <input type="submit" value="Submit" class="btn btn-lg btn-success">
-                    <input type="submit" value="Cancel" class="btn btn-lg btn-danger">
+                    {{-- <input type="submit" value="Cancel" class="btn btn-lg btn-danger"> --}}
                 </div>
             </div>
         </div>
@@ -1479,7 +1435,7 @@
             <div class="mt-4">
                 <div class="form-field text-end">
                     <input type="submit" value="Submit" class="btn btn-lg btn-success">
-                    <input type="submit" value="Cancel" class="btn btn-lg btn-danger">
+                    {{-- <input type="submit" value="Cancel" class="btn btn-lg btn-danger"> --}}
                 </div>
             </div>
         </div>
@@ -1714,8 +1670,8 @@
                                                     <div class="form-field text-end">
                                                         <input type="submit" name="" id="submitData"
                                                             value="Add Article" class="btn btn-lg btn-success">
-                                                        <input type="submit" name="" id=""
-                                                            value="Cancel" class="btn btn-lg btn-danger">
+                                                        {{-- <input type="submit" name="" id=""
+                                                            value="Cancel" class="btn btn-lg btn-danger"> --}}
                                                     </div>
                                                 </div>
                                             </div>
