@@ -43,11 +43,12 @@ class PostController extends Controller
 
         $analyses = Analysis::all();
         $identifyError = IdentifyError::all();
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'asc')->get();
         $IdentifyCompensators = IdentifyCompensator::orderBy('id', 'desc')->get();
         $questions = Question::orderBy('id', 'desc')->get();
         $answers = Answer::orderBy('id', 'desc')->get();
         $problems = Problem::orderBy('id', 'desc')->get();
+        
         return view('backend.pages.post.create', compact('posts', 'analyses','identifyError', 'IdentifyCompensators', 'questions', 'answers', 'problems'));
     }
 

@@ -8,7 +8,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
 
 
-<script src="assets/js/text-editor.js"></script>
+{{-- <script src="assets/js/text-editor.js"></script> --}}
     <!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 
     <script>

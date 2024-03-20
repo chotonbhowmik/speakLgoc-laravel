@@ -582,52 +582,70 @@
                                                 <div>
                                                     <ul class="nav nav-tabs d-flex justify-content-between myTabs mb-4"
                                                         id="myTab" role="tablist">
+
+{{--
                                                         <li class="nav-item" role="presentation">
-                                                            <button class="nav-link active" id="home-tab"
-                                                                data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+            <button class="nav-link active" id="contact-tab{{ $post->id }}" data-bs-toggle="tab" data-bs-target="#contact-tab-pane1_{{ $post->id }}" type="button" role="tab" aria-controls="contact-tab-pane1_{{ $post->id }}" aria-selected="true">Contact</button>
+        </li> --}}
+
+
+
+                                                        <li class="nav-item" role="presentation">
+                                                            <button class="nav-link active" id="home-tab{{ $post->id }}"
+                                                                data-bs-toggle="tab" data-bs-target="#home-tab-pane_{{ $post->id }}"
                                                                 type="button" role="tab"
-                                                                aria-controls="home-tab-pane" aria-selected="true">
+                                                                aria-controls="home-tab-pane_{{ $post->id }}" aria-selected="true">
                                                                 Analysis
                                                             </button>
                                                         </li>
+
+
+
                                                         <li class="nav-item" role="presentation">
-                                                            <button class="nav-link" id="profile-tab"
-                                                                data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                                                            <button class="nav-link" id="profile-tab{{ $post->id }}"
+                                                                data-bs-toggle="tab" data-bs-target="#profile-tab-pane_{{ $post->id }}"
                                                                 type="button" role="tab"
-                                                                aria-controls="profile-tab-pane" aria-selected="false">
+                                                                aria-controls="profile-tab-pane_{{ $post->id }}" aria-selected="false">
                                                                 Errors
                                                             </button>
                                                         </li>
+
+
                                                         <li class="nav-item" role="presentation">
-                                                            <button class="nav-link" id="contact-tab"
-                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                                                            <button class="nav-link" id="contact-tab{{ $post->id }}"
+                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane_{{ $post->id }}"
                                                                 type="button" role="tab"
-                                                                aria-controls="contact-tab-pane" aria-selected="false">
+                                                                aria-controls="contact-tab-pane_{{ $post->id }}" aria-selected="false">
                                                                 Compensators
                                                             </button>
                                                         </li>
 
+
                                                         <li class="nav-item" role="presentation">
-                                                            <button class="nav-link" id="contact-tab1"
-                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane1"
+                                                            <button class="nav-link" id="contact-tab1{{ $post->id }}"
+                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane1_{{ $post->id }}"
                                                                 type="button" role="tab"
-                                                                aria-controls="contact-tab-pane1" aria-selected="false">
+                                                                aria-controls="contact-tab-pane1_{{ $post->id }}" aria-selected="false">
                                                                 Questions
                                                             </button>
                                                         </li>
+
+
                                                         <li class="nav-item" role="presentation">
-                                                            <button class="nav-link" id="contact-tab2"
-                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane2"
+                                                            <button class="nav-link" id="contact-tab2{{ $post->id }}"
+                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane2_{{ $post->id }}"
                                                                 type="button" role="tab"
-                                                                aria-controls="contact-tab-pane2" aria-selected="false">
+                                                                aria-controls="contact-tab-pane2_{{ $post->id }}" aria-selected="false">
                                                                 Answers
                                                             </button>
                                                         </li>
+
+
                                                         <li class="nav-item" role="presentation">
-                                                            <button class="nav-link" id="contact-tab3"
-                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane3"
+                                                            <button class="nav-link" id="contact-tab3{{ $post->id }}"
+                                                                data-bs-toggle="tab" data-bs-target="#contact-tab-pane3_{{ $post->id }}"
                                                                 type="button" role="tab"
-                                                                aria-controls="contact-tab-pane3" aria-selected="false">
+                                                                aria-controls="contact-tab-pane3_{{ $post->id }}" aria-selected="false">
                                                                 Problems
                                                             </button>
                                                         </li>
@@ -635,8 +653,14 @@
 
                                                     {{-- analysis tab modal --}}
                                                     <div class="tab-content" id="myTabContent">
-                                                        <div class="tab-pane fade show active" id="home-tab-pane"
-                                                            role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+
+
+
+
+
+
+                                                        <div class="tab-pane fade show active" id="home-tab-pane_{{ $post->id }}"
+                                                            role="tabpanel" aria-labelledby="home-tab_{{ $post->id }}" tabindex="0">
 
 
      <div class="myDataTable table-responsive">
@@ -683,8 +707,16 @@
 
 
                                                         </div>
-                                                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                                                            aria-labelledby="profile-tab" tabindex="0">
+
+
+                                                         {{-- <div class="tab-pane fade show active" id="contact-tab-pane1_{{ $post->id }}" role="tabpanel" aria-labelledby="contact-tab1_{{ $post->id }}">
+            <!-- Tab content for the first tab -->
+            Content for tab 1 of post {{ $post->id }}
+        </div> --}}
+
+
+                                                        <div class="tab-pane fade" id="profile-tab-pane_{{ $post->id }}" role="tabpanel"
+                                                            aria-labelledby="profile-tab_{{ $post->id }}" tabindex="0">
 
                                                             <div class="myDataTable table-responsive">
 
@@ -756,8 +788,15 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
-                                                            aria-labelledby="contact-tab" tabindex="0">
+
+                                                             {{-- <div class="tab-pane fade show active" id="contact-tab-pane1_{{ $post->id }}" role="tabpanel" aria-labelledby="contact-tab1_{{ $post->id }}">
+            <!-- Tab content for the first tab -->
+            Content for tab 1 of post {{ $post->id }}
+        </div> --}}
+
+
+                                                        <div class="tab-pane fade" id="contact-tab-pane_{{ $post->id }}" role="tabpanel"
+                                                            aria-labelledby="contact-tab_{{ $post->id }}" tabindex="0">
                                                             <div class="myDataTable table-responsive">
 
                                                           <div class="d-flex justify-content-end">
@@ -812,8 +851,13 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane fade" id="contact-tab-pane1" role="tabpanel"
-                                                            aria-labelledby="contact-tab1" tabindex="0">
+
+                                                            {{-- <div class="tab-pane fade show active" id="contact-tab-pane1_{{ $post->id }}" role="tabpanel" aria-labelledby="contact-tab1_{{ $post->id }}">
+            <!-- Tab content for the first tab -->
+            Content for tab 1 of post {{ $post->id }}
+        </div> --}}
+                                                        <div class="tab-pane fade" id="contact-tab-pane1_{{ $post->id }}" role="tabpanel"
+                                                            aria-labelledby="contact-tab1_{{ $post->id }}" tabindex="0">
                                                             <div class="myDataTable table-responsive">
 
 
@@ -867,8 +911,10 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane fade" id="contact-tab-pane2" role="tabpanel"
-                                                            aria-labelledby="contact-tab2" tabindex="0">
+
+
+                                                        <div class="tab-pane fade" id="contact-tab-pane2_{{ $post->id }}" role="tabpanel"
+                                                            aria-labelledby="contact-tab2_{{ $post->id }}" tabindex="0">
                                                             <div class="myDataTable table-responsive">
                                                                  <div class="d-flex justify-content-end">
     <div class="addRemove-opt">
@@ -925,8 +971,8 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        <div class="tab-pane fade" id="contact-tab-pane3" role="tabpanel"
-                                                            aria-labelledby="contact-tab3" tabindex="0">
+                                                        <div class="tab-pane fade" id="contact-tab-pane3_{{ $post->id }}" role="tabpanel"
+                                                            aria-labelledby="contact-tab3_{{ $post->id }}" tabindex="0">
                                                             <div class="myDataTable table-responsive">
                                                                  <div class="d-flex justify-content-end">
     <div class="addRemove-opt">
