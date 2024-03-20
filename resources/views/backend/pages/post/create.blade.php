@@ -730,7 +730,7 @@
     <td>
        <div class="d-flex justify-content-end">
     <div class="addRemove-opt">
-        <button href="#" id="add-opt" class="btn btn-success my-3">
+        <button href="#" id="add-opt_{{ $post->id }}" class="btn btn-success my-3" onclick="adderror('{{ $post->id }}')">
             <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
             Add Error
         </button>
@@ -801,7 +801,7 @@
 
                                                           <div class="d-flex justify-content-end">
     <div class="addRemove-opt">
-         <button href="#" id="add-opt-comp" class="btn btn-success my-3">
+         <button href="#" id="add-opt-comp_{{ $post->id }}" class="btn btn-success my-3" onclick="addcompensator('{{ $post->id }}')">
                                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
                                 Add Compensator
                             </button>
@@ -863,7 +863,7 @@
 
  <div class="d-flex justify-content-end">
     <div class="addRemove-opt">
-         <button href="#" id="add-opt-ques" class="btn btn-success my-3">
+         <button href="#" id="add-opt-ques_{{ $post->id }}" class="btn btn-success my-3" onclick="addquestion('{{ $post->id }}')">
                                 <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
                                 Add Question
                             </button>
@@ -918,14 +918,12 @@
                                                             <div class="myDataTable table-responsive">
                                                                  <div class="d-flex justify-content-end">
     <div class="addRemove-opt">
-         <button href="#" id="add-opt-ans" class="btn btn-success my-3">
-                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
-                                Add Answer
-                            </button>
-        {{-- <a href="" id="remove-opt">
-            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
-        </a> --}}
-    </div>
+    <button href="#" id="add-opt-ans_{{ $post->id }}" class="btn btn-success my-3 add-answer-btn" onclick="openModal('{{ $post->id }}')">
+        <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+        Add Answer
+    </button>
+</div>
+
 </div>
                                                                 <table class="table" style="width: 100%">
     <thead>
@@ -940,7 +938,9 @@
     </thead>
 
         <tbody>
-            @foreach($answers as $answer)
+
+            @foreach($answers->where('post_id', $post->id) as $answer)
+            {{-- @foreach($answers as $answer) --}}
                 <tr>
                     <td>{{ $answer->id }}</td>
                     <td>{!! $answer->actual_question !!}</td>
@@ -975,15 +975,15 @@
                                                             aria-labelledby="contact-tab3_{{ $post->id }}" tabindex="0">
                                                             <div class="myDataTable table-responsive">
                                                                  <div class="d-flex justify-content-end">
-    <div class="addRemove-opt">
-         <button href="#" id="add-opt-prob" class="btn btn-success my-3">
-                                <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
-                                Add Problem
-                            </button>
-        {{-- <a href="" id="remove-opt">
-            <img src="{{ asset('Backend/img/minus-icon.svg') }}" alt="" width="24">
-        </a> --}}
-    </div>
+   <div class="addRemove-opt">
+    <button href="#" id="add-opt-prob_{{ $post->id }}" class="btn btn-success my-3 add-problem-btn" onclick="openProblemModal('{{ $post->id }}')">
+        <img src="{{ asset('Backend/img/plus-icon.svg') }}" alt="" width="24" style="filter: brightness(0) invert(1);">
+        Add Problem
+    </button>
+</div>
+
+
+
 </div>
 
     <table class="table" style="width: 100%">
@@ -1037,7 +1037,7 @@
 
                                     <!-- Identify Error Modal -->
 
-                                    <div class="upModal fade" id="upModal">
+                                    <div class="upModal fade" id="upModal_{{ $post->id }}">
                                         <div class="modal d-block">
                                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                                 <div class="modal-content">
@@ -1060,7 +1060,7 @@
                                                         </div>
 
                                                         <button type="button" class="btn-close"
-                                                            id="upModal-close"></button>
+                                                            id="upModal-close" onclick="closeErrorModal('{{ $post->id }}')"></button>
                                                     </div>
 
                                                     <div class="modal-body p-4">
@@ -1143,7 +1143,7 @@
 
                                     <!-- Compensator Modal -->
 
-                                    <div class="upModal fade" id="upModal2">
+                                    <div class="upModal fade" id="upModal2_{{ $post->id }}">
                                         <div class="modal d-block">
                                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                                 <div class="modal-content">
@@ -1166,7 +1166,7 @@
                                                         </div>
 
                                                         <button type="button" class="btn-close"
-                                                            id="upModal2-close"></button>
+                                                            id="upModal2-close" onclick="closeCompensator('{{ $post->id }}')"></button>
                                                     </div>
 
                                                     <div class="modal-body p-4">
@@ -1242,7 +1242,7 @@
 
                                     <!-- Question Modal -->
 
-                                    <div class="upModal fade" id="upModal3">
+                                    <div class="upModal fade" id="upModal3_{{ $post->id }}">
                                         <div class="modal d-block">
                                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                                 <div class="modal-content">
@@ -1265,7 +1265,7 @@
                                                         </div>
 
                                                         <button type="button" class="btn-close"
-                                                            id="upModal3-close"></button>
+                                                            id="upModal3-close" onclick="closeQuestionModal('{{ $post->id }}')"></button>
                                                     </div>
 
                                                     <div class="modal-body p-4">
@@ -1317,7 +1317,7 @@
 
                                     <!-- Answer Modal -->
 
-                                    <div class="upModal fade" id="upModal4">
+                                    <div class="upModal fade" id="upModal4_{{ $post->id }}">
                                         <div class="modal d-block">
                                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                                 <div class="modal-content">
@@ -1340,7 +1340,7 @@
                                                         </div>
 
                                                         <button type="button" class="btn-close"
-                                                            id="upModal4-close"></button>
+                                                            id="upModal4-close" onclick="closeAnswerModal('{{ $post->id }}')"></button>
                                                     </div>
 
                                                     <div class="modal-body p-4">
@@ -1403,7 +1403,7 @@
 
                                     <!-- Problem Modal -->
 
-                                    <div class="upModal fade" id="upModal5">
+                                    <div class="upModal fade" id="upModal5_{{ $post->id }}">
                                         <div class="modal d-block">
                                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                                 <div class="modal-content">
@@ -1426,7 +1426,7 @@
                                                         </div>
 
                                                         <button type="button" class="btn-close"
-                                                            id="upModal5-close"></button>
+                                                            id="upModal5-close" onclick="closeProblemModal('{{ $post->id }}')"></button>
                                                     </div>
 
                                                     <div class="modal-body p-4">
@@ -3649,5 +3649,56 @@
     });
 </script>
 
+<script>
+    function openModal(postId) {
+        console.log("Button clicked for post ID: " + postId);
+        $('#upModal4_' + postId).modal('show');
+    }
+     function closeAnswerModal(postId) {
+        console.log("Closing modal for post ID: " + postId);
+        $('#upModal4_' + postId).modal('hide');
+    }
+</script>
+
+<script>
+    function openProblemModal(postId) {
+        console.log("Button clicked for post ID: " + postId);
+        $('#upModal5_' + postId).modal('show');
+    }
+    function closeProblemModal(postId) {
+        console.log("Closing modal for post ID: " + postId);
+        $('#upModal5_' + postId).modal('hide');
+    }
+</script>
+<script>
+    function addquestion(postId) {
+        console.log("Button clicked for post ID: " + postId);
+        $('#upModal3_' + postId).modal('show');
+    }
+    function closeQuestionModal(postId) {
+        console.log("Closing modal for post ID: " + postId);
+        $('#upModal3_' + postId).modal('hide');
+    }
+</script>
+<script>
+    function addcompensator(postId) {
+        console.log("Button clicked for post ID: " + postId);
+        $('#upModal2_' + postId).modal('show');
+    }
+     function closeCompensator(postId) {
+        console.log("Closing modal for post ID: " + postId);
+        $('#upModal2_' + postId).modal('hide');
+    }
+</script>
+<script>
+    function adderror(postId) {
+        console.log("Button clicked for post ID: " + postId);
+        $('#upModal_' + postId).modal('show');
+    }
+    function closeErrorModal(postId) {
+        console.log("Closing modal for post ID: " + postId);
+        $('#upModal_' + postId).modal('hide');
+    }
+</script>
 
         @endsection
