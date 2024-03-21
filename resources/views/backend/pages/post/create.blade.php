@@ -688,7 +688,7 @@
             <input type="hidden" name="post_id" value="{{ $post->id }}">
             <div class="form-field" >
                 <!-- Replace the div with textarea -->
-                <textarea class="form-control" name="analysis_description" rows="7" id="editor"></textarea>
+                <textarea class="form-control ckeditor-textarea" name="analysis_description" rows="7" ></textarea>
             </div>
         </div>
     </div>
@@ -1112,7 +1112,7 @@
                 <h6>Error Description</h6>
                 <div class="form-group">
 
-                    <textarea class="form-control"  name="error_description" rows="3" id="editor_one"></textarea>
+                    <textarea class="form-control ckeditor-textarea"  name="error_description" rows="3" ></textarea>
                 </div>
             </div>
         </div>
@@ -1215,7 +1215,7 @@
 
                 <h6>Compensator Description</h6>
                 <div class="form-field">
-                    <textarea class="form-control" name="compensator_description" rows="3" id="editor_two"></textarea>
+                    <textarea class="form-control ckeditor-textarea" name="compensator_description" rows="3"></textarea>
                 </div>
 
         </div>
@@ -1290,7 +1290,7 @@
             <div class="text-ed-outer p-3 mt-4">
                 <h6>Actual Question</h6>
                 <div class="form-field">
-                    <textarea class="form-control" name="actual_question"  rows="3" id="editor_three"></textarea>
+                    <textarea class="form-control ckeditor-textarea" name="actual_question"  rows="3" ></textarea>
                 </div>
             </div>
         </div>
@@ -1375,7 +1375,7 @@
             <div class="text-ed-outer p-3 mt-4">
                 <h6>Actual Answer</h6>
                 <div class="form-field">
-                    <textarea class="form-control" name="actual_answer" rows="3" id="editor_four"></textarea>
+                    <textarea class="form-control ckeditor-textarea" name="actual_answer" rows="3" ></textarea>
                 </div>
             </div>
         </div>
@@ -1471,7 +1471,7 @@
             <div class="text-ed-outer p-3 mt-4">
                 <h6>Problem Description</h6>
                 <div class="form-field">
-                    <textarea class="form-control" name="problem_description" rows="3" id="editor_five" ></textarea>
+                    <textarea class="form-control ckeditor-textarea" name="problem_description" rows="3"  ></textarea>
                 </div>
             </div>
         </div>
@@ -3603,7 +3603,22 @@
                 </div>
             </div>
             <!-- Modal -->
-<script>
+            <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all textareas with the class "ckeditor-textarea"
+        var textareas = document.querySelectorAll('.ckeditor-textarea');
+
+        // Iterate over each textarea and initialize ClassicEditor
+        textareas.forEach(function(textarea) {
+            ClassicEditor
+                .create(textarea)
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    });
+</script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
@@ -3647,7 +3662,7 @@
                 console.error( error );
             });
     });
-</script>
+</script> --}}
 
 <script>
     function openModal(postId) {
