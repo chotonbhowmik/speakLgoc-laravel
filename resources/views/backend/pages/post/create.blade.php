@@ -559,13 +559,13 @@
                                                 <div class="editedData p-3 mb-4">
                                                     <div class="row">
                                                         <div class="col-lg-4">
-                                                            <img src="{{ asset('Backend/img/image.jpg') }} "
+                                                            <img src=" {{ asset('Backend/img/post' )}}/{{ $post->image }} "
                                                                 alt="" class="w-100">
                                                         </div>
                                                         <div class="col-lg-8">
                                                             <div class="editedData__content">
 
-                                                                <h5>{{ $post->article_title }}</h5>{{ $post->id }}
+                                                                <h5>{{ $post->article_title }}</h5>
                                                                 <!-- <h6>Here I will use sub heading</h6> -->
                                                                 <p>
                                                                     {{ $post->aricale_description }}
