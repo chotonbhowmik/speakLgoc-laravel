@@ -564,9 +564,13 @@
                                                         </div>
                                                         <div class="col-lg-8">
                                                             <div class="editedData__content">
-
+                                                                @if(!is_null($post->image))
                                                                 <h5>{{ $post->article_title }}</h5>
                                                                 <!-- <h6>Here I will use sub heading</h6> -->
+                                                                @else
+                                                                No Image
+
+                                                                @endif
                                                                 <p>
                                                                     {{ $post->aricale_description }}
                                                                 </p>
